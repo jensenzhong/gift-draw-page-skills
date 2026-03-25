@@ -1,4 +1,3 @@
-```md
 # 💖 Heart Lottery Page Builder
 
 English | [中文](#中文)
@@ -438,4 +437,3 @@ python .\gift-draw-page\scripts\generate_page.py `
 本项目基于 MIT License 开源。
 
 你可以自由使用、修改、分发和二次创作，包括个人项目、班级活动和商业用途，但请保留原始许可证文本。
-```
