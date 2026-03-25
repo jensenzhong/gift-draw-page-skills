@@ -1,15 +1,5 @@
 # Heart Lottery Page Builder
 
-<div align="center">
-  <video src="./demo_vedio.mp4" poster="./showcase.png" controls muted playsinline width="100%"></video>
-</div>
-
-<p align="center">
-  <a href="./demo_vedio.mp4"><strong>▶ Watch Demo Video</strong></a>
-  ·
-  <a href="./gift-draw-page-demo.html"><strong>Open Demo HTML</strong></a>
-</p>
-
 中文 | [English](#english)
 
 https://github.com/user-attachments/assets/bd3fa6a2-f645-41b8-99bf-4646eb58d76d
