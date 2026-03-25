@@ -1,33 +1,45 @@
 # Heart Lottery Page Builder
 
+<div align="center">
+  <video src="./demo_vedio.mp4" poster="./showcase.png" controls muted playsinline width="100%"></video>
+</div>
+
+<p align="center">
+  <a href="./demo_vedio.mp4"><strong>▶ Watch Demo Video</strong></a>
+  ·
+  <a href="./gift-draw-page-demo.html"><strong>Open Demo HTML</strong></a>
+</p>
+
 中文 | [English](#english)
 
 ## 中文
 
-一个用于生成“爱心形状抽奖页”的开源小项目。
+这是一个用来生成“爱心形状礼物抽选页”的开源项目。
 
-这个仓库包含两部分：
+仓库包含两部分：
 
-- 一个已经做好的女生节抽奖成品页
-- 一个可复用的 Codex skill，可以根据你提供的选项、礼物和祝福语，自动生成同风格的单文件 HTML 页面
+- 一个可以直接打开使用的演示页面 `gift-draw-page-demo.html`
+- 一套可复用的生成资源，可根据你提供的选项、礼物和祝福语生成同风格的单文件 HTML 页面
 
 适合场景：
 
-- 女生节抽礼物
+- 女生节礼物抽选
 - 生日惊喜抽奖
 - 班级活动抽奖
 - 节日互动页
-- 任何“选一项，然后揭晓对应礼物或祝福”的轻量活动页面
+- 任何“选一个选项，再揭晓对应礼物或祝福”的轻量活动页面
 
 ### 功能特点
 
 - 单文件 HTML，打开即用
-- 爱心形状布局
-- 点击卡片弹出开奖卡片
+- 爱心形状选项布局
+- 点击卡片弹出礼物揭晓弹窗
+- 礼物揭晓时带全屏礼炮庆祝效果
 - 支持随机抽取
 - 支持刷新重置
-- 已抽过卡片自动变淡并显示状态
-- 支持通过文本清单或 JSON 自动生成新页面
+- 已抽过的卡片自动变淡并显示状态
+- 支持从纯文本或 JSON 自动生成新页面
+- 可作为 Codex skill 或 Claude Code skill 使用
 - 完全开源
 
 ### 项目结构
@@ -36,10 +48,11 @@
 .
 ├─ README.md
 ├─ LICENSE
-├─ 女生节心愿礼物抽选.html
-└─ heart-lottery-page-builder/
+├─ gift-draw-page-demo.html
+└─ gift-draw-page/
    ├─ SKILL.md
    ├─ agents/
+   │  └─ openai.yaml
    ├─ assets/
    │  ├─ example-config.json
    │  ├─ example-input.txt
@@ -55,27 +68,27 @@
 
 ### 快速开始
 
-#### 1. 直接使用现成页面
+#### 1. 直接使用演示页面
 
 打开：
 
 ```text
-女生节心愿礼物抽选.html
+gift-draw-page-demo.html
 ```
 
-这是当前已经做好的成品页，可以直接展示。
+这是当前已经做好的演示页，可以直接展示或继续修改。
 
 #### 2. 通过生成器创建新页面
 
 生成器支持两种输入方式：
 
 - JSON
-- 纯文本清单
+- 纯文本
 
 示例命令：
 
 ```bash
-python heart-lottery-page-builder/scripts/generate_page.py \
+python gift-draw-page/scripts/generate_page.py \
   --config your-input.txt \
   --output your-page.html
 ```
@@ -83,8 +96,8 @@ python heart-lottery-page-builder/scripts/generate_page.py \
 Windows PowerShell 示例：
 
 ```powershell
-python .\heart-lottery-page-builder\scripts\generate_page.py `
-  --config .\heart-lottery-page-builder\assets\example-input.txt `
+python .\gift-draw-page\scripts\generate_page.py `
+  --config .\gift-draw-page\assets\example-input.txt `
   --output .\my-lottery.html
 ```
 
@@ -103,42 +116,42 @@ python .\heart-lottery-page-builder\scripts\generate_page.py `
 
 礼物：
 1. 猫猫情绪盲盒
-2. 口服液水杯
-3. 牛逼陶瓷杯
+2. 水杯
+3. 陶瓷杯
 ```
 
 如果没有提供祝福语，生成器会自动补默认祝福。
 
-你也可以写成更快的一行式：
+你也可以写成一行一个条目的形式：
 
 ```text
 标题：女生节心愿礼物抽选
 
 条目：
-1. 喜欢开盲盒 | 猫猫情绪盲盒 | 愿你的惊喜感永远在线，拆开的每一天都有小确幸。
-2. 老是忘记喝水 | 口服液水杯
-3. 想要最真挚的祝福 | 牛逼陶瓷杯
+1. 喜欢开盲盒 | 猫猫情绪盲盒 | 愿你拆开的每一次惊喜，都带来一点亮晶晶的小幸运。
+2. 老是忘记喝水 | 水杯
+3. 想要最真挚的祝福 | 陶瓷杯
 ```
 
 更完整的格式说明见：
 
-- `heart-lottery-page-builder/references/plaintext-format.md`
-- `heart-lottery-page-builder/references/input-schema.md`
+- `gift-draw-page/references/plaintext-format.md`
+- `gift-draw-page/references/input-schema.md`
 
 ### 作为 Codex Skill 使用
 
-如果你想把它作为 Codex skill 使用，把 `heart-lottery-page-builder` 安装到：
+把 `gift-draw-page` 安装到：
 
 ```text
-~/.codex/skills/heart-lottery-page-builder
+~/.codex/skills/gift-draw-page
 ```
 
 安装后重启 Codex。
 
-然后就可以直接这样使用：
+然后可以直接这样使用：
 
 ```text
-用 heart-lottery-page-builder 帮我生成一个抽奖页。
+使用 gift-draw-page 帮我生成一个抽选页面。
 
 标题：女生节心愿礼物抽选
 
@@ -149,23 +162,65 @@ python .\heart-lottery-page-builder\scripts\generate_page.py `
 
 礼物：
 1. 猫猫情绪盲盒
-2. 口服液水杯
-3. 牛逼陶瓷杯
+2. 水杯
+3. 陶瓷杯
 ```
 
-### 输出页面默认包含
+### 作为 Claude Code Skill 使用
+
+把仓库中的 `gift-draw-page` 文件夹复制到：
+
+```text
+~/.claude/skills/gift-draw-page
+```
+
+然后重启 Claude Code。
+
+在 Claude Code 中可以直接输入：
+
+```text
+/gift-draw-page
+```
+
+或者直接这样描述需求：
+
+```text
+/gift-draw-page 帮我生成一个爱心形状礼物抽选页。
+
+标题：女生节心愿礼物抽选
+
+选项：
+1. 喜欢开盲盒
+2. 老是忘记喝水
+3. 想要最真挚的祝福
+
+礼物：
+1. 猫猫情绪盲盒
+2. 水杯
+3. 陶瓷杯
+```
+
+这个 skill 会引导 Claude Code：
+
+- 优先复用 `gift-draw-page/scripts/generate_page.py`
+- 优先使用仓库内已有模板和参考格式
+- 修改现有页面时做增量调整，而不是整页重写
+- 保持单文件 HTML、爱心布局、随机抽取、重置和已抽状态等核心交互
+
+### 默认输出包含
 
 - 柔和粉色活动页风格
 - 爱心形状选项布局
-- 居中开奖弹窗
+- 居中礼物揭晓弹窗
+- 全屏礼炮庆祝效果
 - 随机抽取按钮
-- 已抽过状态
+- 已抽状态
 - 重置功能
-- 单文件输出，方便直接分享
+- 单文件输出，便于直接分享
 
 ### 开源说明
 
-本项目以 MIT License 开源。
+本项目基于 MIT License 开源。
 
 你可以自由使用、修改、分发和二次创作，包括个人项目、班级活动和商业用途，但请保留原始许可证文本。
 
@@ -173,12 +228,12 @@ python .\heart-lottery-page-builder\scripts\generate_page.py `
 
 ## English
 
-An open-source project for building heart-shaped lottery pages.
+An open-source project for building heart-shaped gift draw pages.
 
 This repository includes:
 
-- A ready-to-use Girls' Day lottery page
-- A reusable Codex skill that can generate a page with the same style from your own options, gifts, and blessings
+- A ready-to-use demo page: `gift-draw-page-demo.html`
+- A reusable generation toolkit that can build matching single-file HTML pages from your own options, gifts, and blessings
 
 Good for:
 
@@ -186,17 +241,19 @@ Good for:
 - Birthday surprise pages
 - Class event raffles
 - Holiday interaction pages
-- Any lightweight activity page where users pick one item and reveal a matching gift or message
+- Any lightweight page where users pick an option and reveal a matching gift or message
 
 ### Features
 
 - Single-file HTML output
 - Heart-shaped card layout
 - Reveal modal for each card
+- Full-screen confetti celebration on reveal
 - Random draw support
 - Reset support
 - Used cards automatically fade and show status
-- Generate pages from plain text lists or JSON
+- Generate pages from plain text or JSON
+- Can be used as a Codex skill or Claude Code skill
 - Fully open source
 
 ### Project Structure
@@ -205,10 +262,11 @@ Good for:
 .
 ├─ README.md
 ├─ LICENSE
-├─ 女生节心愿礼物抽选.html
-└─ heart-lottery-page-builder/
+├─ gift-draw-page-demo.html
+└─ gift-draw-page/
    ├─ SKILL.md
    ├─ agents/
+   │  └─ openai.yaml
    ├─ assets/
    │  ├─ example-config.json
    │  ├─ example-input.txt
@@ -224,15 +282,15 @@ Good for:
 
 ### Quick Start
 
-#### 1. Use the ready-made page
+#### 1. Use the demo page
 
 Open:
 
 ```text
-女生节心愿礼物抽选.html
+gift-draw-page-demo.html
 ```
 
-This is the finished demo page and can be used directly.
+This is the finished demo page and can be used directly or further customized.
 
 #### 2. Generate a new page
 
@@ -244,7 +302,7 @@ The generator supports:
 Example:
 
 ```bash
-python heart-lottery-page-builder/scripts/generate_page.py \
+python gift-draw-page/scripts/generate_page.py \
   --config your-input.txt \
   --output your-page.html
 ```
@@ -252,8 +310,8 @@ python heart-lottery-page-builder/scripts/generate_page.py \
 PowerShell example:
 
 ```powershell
-python .\heart-lottery-page-builder\scripts\generate_page.py `
-  --config .\heart-lottery-page-builder\assets\example-input.txt `
+python .\gift-draw-page\scripts\generate_page.py `
+  --config .\gift-draw-page\assets\example-input.txt `
   --output .\my-lottery.html
 ```
 
@@ -291,15 +349,15 @@ Entries:
 
 More details:
 
-- `heart-lottery-page-builder/references/plaintext-format.md`
-- `heart-lottery-page-builder/references/input-schema.md`
+- `gift-draw-page/references/plaintext-format.md`
+- `gift-draw-page/references/input-schema.md`
 
 ### Use as a Codex Skill
 
-Install `heart-lottery-page-builder` into:
+Install `gift-draw-page` into:
 
 ```text
-~/.codex/skills/heart-lottery-page-builder
+~/.codex/skills/gift-draw-page
 ```
 
 Restart Codex after installation.
@@ -307,7 +365,7 @@ Restart Codex after installation.
 Then you can use prompts like:
 
 ```text
-Use heart-lottery-page-builder to create a lottery page.
+Use gift-draw-page to create a lottery page.
 
 Title: Girls' Day Gift Draw
 
@@ -322,11 +380,53 @@ Gifts:
 3. Ceramic mug
 ```
 
+### Use as a Claude Code Skill
+
+Copy the `gift-draw-page` folder from this repository into:
+
+```text
+~/.claude/skills/gift-draw-page
+```
+
+Then restart Claude Code.
+
+Inside Claude Code, you can invoke it with:
+
+```text
+/gift-draw-page
+```
+
+Or prompt it like this:
+
+```text
+/gift-draw-page Create a heart-shaped gift draw page.
+
+Title: Girls' Day Gift Draw
+
+Options:
+1. Loves opening blind boxes
+2. Always forgets to drink water
+3. Wants the most sincere blessing
+
+Gifts:
+1. Cat mood blind box
+2. Water cup
+3. Ceramic mug
+```
+
+This skill guides Claude Code to:
+
+- Prefer the bundled `gift-draw-page/scripts/generate_page.py` generator
+- Reuse the template and reference files already in the repository
+- Make incremental edits when updating an existing page
+- Preserve the single-file HTML output, heart layout, random draw, reset, and used-card behavior
+
 ### Default Output Includes
 
 - Soft pink event-page styling
 - Heart-shaped option layout
 - Centered reveal modal
+- Full-screen confetti celebration effect
 - Random pick button
 - Used-card state
 - Reset support

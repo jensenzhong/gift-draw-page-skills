@@ -1,0 +1,4 @@
+interface:
+  display_name: "Heart Lottery Builder"
+  short_description: "Generate a heart-shaped HTML gift draw page"
+  default_prompt: "Use gift-draw-page to create a single-file HTML gift draw page from my options, gifts, and blessings."
