@@ -12,6 +12,10 @@
 
 中文 | [English](#english)
 
+https://github.com/user-attachments/assets/bd3fa6a2-f645-41b8-99bf-4646eb58d76d
+
+
+
 ## 中文
 
 这是一个用来生成“爱心形状礼物抽选页”的开源项目。
